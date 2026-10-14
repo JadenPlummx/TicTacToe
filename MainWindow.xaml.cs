@@ -26,6 +26,13 @@ namespace TicTacToe
     /// </summary>
     public partial class MainWindow : Window
     {
+
+    // Class-level variables
+        private string currentPlayer = "X";
+        private int scoreX = 0;
+        private int scoreO = 0;
+        private int scoreCats = 0;
+        private int movesCount = 0;
         public MainWindow()
         {
             InitializeComponent();
