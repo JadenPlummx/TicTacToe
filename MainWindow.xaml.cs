@@ -1,4 +1,14 @@
-﻿using System.Text;
+// ============================================================================
+// Project Name: TicTacToe
+// Description: A WPF two player Tic Tac Toe game where users
+//   can enter names, track scores and even possibly
+//   turn into a cat if a tie game occurs.
+// Author: Jaden Plummer
+// Date: October 14, 2026
+// ============================================================================
+
+
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
