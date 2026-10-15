@@ -37,5 +37,92 @@ namespace TicTacToe
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Checks if three buttons contain matching values and highlights them if matching.
+        /// </summary>
+        private bool CheckLine(Button btn1, Button btn2, Button btn3)
+        {
+            // Local variables declared at top of scope block
+            string content1;
+            string content2;
+            string content3;
+            Brush winColor;
+
+            content1 = btn1.Content?.ToString();
+            content2 = btn2.Content?.ToString();
+            content3 = btn3.Content?.ToString();
+
+            if (!string.IsNullOrEmpty(content1) && content1 == content2 && content1 == content3)
+            {
+                // Highlight winning line with a bright color to show the winning line
+                winColor = Brushes.LightGreen;
+                btn1.Background = winColor;
+                btn2.Background = winColor;
+                btn3.Background = winColor;
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// checks there is a winner or a cat's game.
+        /// </summary>
+        private void CheckForWin()
+        {
+            // Local variable declared at top of scope block
+            bool hasWon;
+
+            hasWon = false;
+
+            // Check Rows
+            if (CheckLine(buttonTopLeft, buttonTopCenter, buttonTopRight) ||
+                CheckLine(buttonMiddleLeft, buttonMiddleCenter, buttonMiddleRight) ||
+                CheckLine(buttonBottomLeft, buttonBottomCenter, buttonBottomRight))
+            {
+                hasWon = true;
+            }
+            // Check Columns
+            else if (CheckLine(buttonTopLeft, buttonMiddleLeft, buttonBottomLeft) ||
+                     CheckLine(buttonTopCenter, buttonMiddleCenter, buttonBottomCenter) ||
+                     CheckLine(buttonTopRight, buttonMiddleRight, buttonBottomRight))
+            {
+                hasWon = true;
+            }
+            // Check Diagonals
+            else if (CheckLine(buttonTopLeft, buttonMiddleCenter, buttonBottomRight) ||
+                     CheckLine(buttonTopRight, buttonMiddleCenter, buttonBottomLeft))
+            {
+                hasWon = true;
+            }
+
+            if (hasWon)
+            {
+                // Display winner message box and update score
+                MessageBox.Show($"{currentPlayer} is the Winner!", "Winner Announcement", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                if (currentPlayer == "X")
+                {
+                    scoreX++;
+                    scoreXLabel.Content = scoreX.ToString();
+                }
+                else
+                {
+                    scoreO++;
+                    scoreOLabel.Content = scoreO.ToString();
+                }
+
+                ResetBoard();
+            }
+            else if (movesCount == 9)
+            {
+                // Cat's game / tie handling
+                MessageBox.Show("It's a Cat's Game (Tie)!", "Tie Announcement", MessageBoxButton.OK, MessageBoxImage.Information);
+                scoreCats++;
+                scoreCatsLabel.Content = scoreCats.ToString();
+                ResetBoard();
+            }
+        }
     }
 }
