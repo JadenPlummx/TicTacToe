@@ -124,5 +124,65 @@ namespace TicTacToe
                 ResetBoard();
             }
         }
+
+        /// <summary>
+        /// Handles click events on any of the 9 game board buttons.
+        /// </summary>
+        private void BoardButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Local variable declared at top of scope block
+            Button clickedButton;
+
+            clickedButton = sender as Button;
+
+            if (clickedButton != null && string.IsNullOrEmpty(clickedButton.Content?.ToString()))
+            {
+                // Set content to current player, disable button, and increment moves
+                clickedButton.Content = currentPlayer;
+                clickedButton.IsEnabled = false;
+                movesCount++;
+
+                // Check if this move resulted in a win or tie
+                CheckForWin();
+
+                // If game hasn't reset yet, switch player turn
+                if (clickedButton.IsEnabled == false && movesCount < 9)
+                {
+                    if (currentPlayer == "X")
+                    {
+                        currentPlayer = "O";
+                    }
+                    else
+                    {
+                        currentPlayer = "X";
+                    }
+
+                    currentPlayerLabel.Content = currentPlayer;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Allows users to choose or switch the starting player before moves are made.
+        /// </summary>
+        private void choosePlayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (movesCount == 0)
+            {
+                if (currentPlayer == "X")
+                {
+                    currentPlayer = "O";
+                }
+                else
+                {
+                    currentPlayer = "X";
+                }
+                currentPlayerLabel.Content = currentPlayer;
+            }
+            else
+            {
+                MessageBox.Show("Cannot change starting player once the game has started!", "Notice", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
