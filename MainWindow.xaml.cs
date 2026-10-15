@@ -184,5 +184,73 @@ namespace TicTacToe
                 MessageBox.Show("Cannot change starting player once the game has started!", "Notice", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        /// <summary>
+        /// Clears board buttons, allows players to click them,
+        /// </summary>
+        private void ResetBoard()
+        {
+            buttonTopLeft.Content = string.Empty;
+            buttonTopLeft.IsEnabled = true;
+            buttonTopLeft.ClearValue(Button.BackgroundProperty);
+
+            buttonTopCenter.Content = string.Empty;
+            buttonTopCenter.IsEnabled = true;
+            buttonTopCenter.ClearValue(Button.BackgroundProperty);
+
+            buttonTopRight.Content = string.Empty;
+            buttonTopRight.IsEnabled = true;
+            buttonTopRight.ClearValue(Button.BackgroundProperty);
+
+            buttonMiddleLeft.Content = string.Empty;
+            buttonMiddleLeft.IsEnabled = true;
+            buttonMiddleLeft.ClearValue(Button.BackgroundProperty);
+
+            buttonMiddleCenter.Content = string.Empty;
+            buttonMiddleCenter.IsEnabled = true;
+            buttonMiddleCenter.ClearValue(Button.BackgroundProperty);
+
+            buttonMiddleRight.Content = string.Empty;
+            buttonMiddleRight.IsEnabled = true;
+            buttonMiddleRight.ClearValue(Button.BackgroundProperty);
+
+            buttonBottomLeft.Content = string.Empty;
+            buttonBottomLeft.IsEnabled = true;
+            buttonBottomLeft.ClearValue(Button.BackgroundProperty);
+
+            buttonBottomCenter.Content = string.Empty;
+            buttonBottomCenter.IsEnabled = true;
+            buttonBottomCenter.ClearValue(Button.BackgroundProperty);
+
+            buttonBottomRight.Content = string.Empty;
+            buttonBottomRight.IsEnabled = true;
+            buttonBottomRight.ClearValue(Button.BackgroundProperty);
+
+            currentPlayer = "X";
+            currentPlayerLabel.Content = currentPlayer;
+            movesCount = 0;
+        }
+
+        /// <summary>
+        /// Resets the game board and all scores to zero.
+        /// </summary>
+        private void restartButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetBoard();
+            scoreX = 0;
+            scoreO = 0;
+            scoreCats = 0;
+            scoreXLabel.Content = "0";
+            scoreOLabel.Content = "0";
+            scoreCatsLabel.Content = "0";
+        }
+
+        /// <summary>
+        /// Disintegrate the application.
+        /// </summary>
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
